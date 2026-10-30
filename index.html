@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soemiwi Eyewear</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .bg-soft-gradient {
+            background: linear-gradient(135deg, #FFF0F5 0%, #FFE4E1 50%, #FFF5F7 100%);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 182, 193, 0.3);
+        }
+
+        .text-theme {
+            color: #C71585;
+        }
+
+        .bg-theme {
+            background-color: #FF1493;
+        }
+
+        .bg-theme:hover {
+            background-color: #DC143C;
+        }
+
+        /* Floating Graphic Animation */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(1deg); }
+        }
+
+        .animate-float {
+            animation: floatSlow 5s ease-in-out infinite;
+        }
+
+        /* Page Switch Animation */
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active-page {
+            display: block;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-soft-gradient text-gray-700 min-h-screen flex flex-col justify-between">
+
+    <!-- NAVBAR -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-pink-100 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 py-3.5 flex flex-col md:flex-row justify-between items-center gap-3">
+            <div class="logo text-2xl font-extrabold tracking-tight cursor-pointer text-pink-600 hover:scale-105 transition-transform" onclick="switchPage('beranda', document.querySelectorAll('.nav-btn')[0])">
+                Soemiwi <span class="text-pink-400 font-light">Eyewear</span> 👓
+            </div>
+            <nav>
+                <ul class="flex flex-wrap justify-center gap-1.5 md:gap-2">
+                    <li><button class="nav-btn active px-4 py-2 rounded-full text-sm font-semibold text-pink-600 bg-pink-100 transition-all" onclick="switchPage('beranda', this)">Beranda</button></li>
+                    <li><button class="nav-btn px-4 py-2 rounded-full text-sm font-semibold text-gray-600 hover:text-pink-600 hover:bg-pink-50 transition-all" onclick="switchPage('produk', this)">Produk</button></li>
+                    <li><button class="nav-btn px-4 py-2 rounded-full text-sm font-semibold text-gray-600 hover:text-pink-600 hover:bg-pink-50 transition-all" onclick="switchPage('panduan', this)">Panduan Ukuran</button></li>
+                    <li><button class="nav-btn px-4 py-2 rounded-full text-sm font-semibold text-gray-600 hover:text-pink-600 hover:bg-pink-50 transition-all" onclick="switchPage('tentang', this)">Tentang Kami</button></li>
+                    <li><button class="nav-btn px-4 py-2 rounded-full text-sm font-semibold text-gray-600 hover:text-pink-600 hover:bg-pink-50 transition-all" onclick="switchPage('kontak', this)">Kontak</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="max-w-6xl mx-auto px-4 py-8 w-full flex-grow">
+
+        <!-- 1. BERANDA (HOME) -->
+        <section id="beranda" class="page-section active-page space-y-12">
+            
+            <!-- HERO HERO & ANIMATED GRAPHICS -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white/70 rounded-3xl p-6 lg:p-12 shadow-xl border border-pink-100 relative overflow-hidden">
+                <div class="lg:col-span-7 space-y-6 z-10 text-center lg:text-left">
+                    <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-pink-100 text-pink-700">
+                        ✨ Premium Acetate Collection 2026
+                    </span>
+                    <h1 class="text-3xl lg:text-5xl font-extrabold text-gray-800 leading-tight">
+                        Tampil Trendy, Manis & Percaya Diri Setiap Hari!
+                    </h1>
+                    <p class="text-gray-600 text-base lg:text-lg leading-relaxed">
+                        Pilihan kacamata dengan kualitas material terbaik dan desain estetis yang disesuaikan khusus untuk kenyamanan aktivitas harianmu.
+                    </p>
+                    <div class="pt-2 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+                        <button class="px-8 py-3.5 bg-pink-600 hover:bg-pink-700 text-white rounded-full font-bold shadow-lg shadow-pink-200 transition-all hover:-translate-y-0.5" onclick="switchPage('produk', document.querySelectorAll('.nav-btn')[1])">
+                            Jelajahi Katalog <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </button>
+                        <button class="px-6 py-3.5 bg-pink-50 hover:bg-pink-100 text-pink-700 rounded-full font-bold transition-all" onclick="switchPage('panduan', document.querySelectorAll('.nav-btn')[2])">
+                            Panduan Ukuran
+                        </button>
+                    </div>
+                </div>
+
+                <!-- GRAFIK KACAMATA INTERAKTIF (VECTOR SVG) -->
+                <div class="lg:col-span-5 relative flex justify-center items-center py-6">
+                    <div class="w-full max-w-sm aspect-square bg-gradient-to-tr from-pink-200 via-rose-100 to-pink-50 rounded-full flex items-center justify-center p-6 shadow-inner animate-float relative">
+                        
+                        <!-- Floating Badge Graphic 1 -->
+                        <div class="absolute top-4 left-0 bg-white px-3 py-1.5 rounded-2xl shadow-md border border-pink-100 text-xs font-bold text-pink-600 flex items-center gap-1.5">
+                            <i class="fa-solid fa-feather text-pink-500"></i> Ultra Ringan
+                        </div>
+
+                        <!-- Floating Badge Graphic 2 -->
+                        <div class="absolute bottom-6 right-0 bg-white px-3 py-1.5 rounded-2xl shadow-md border border-pink-100 text-xs font-bold text-pink-600 flex items-center gap-1.5">
+                            <i class="fa-solid fa-shield-halved text-pink-500"></i> UV400 Protection
+                        </div>
+
+                        <!-- SVG Vector Graphic Eyeglasses -->
+                        <svg class="w-full h-full text-pink-600 drop-shadow-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M3 12c1.5-2 4-3.5 7-3.5s5.5 1.5 7 3.5"/>
+                            <path d="M14 10.5c.8-.8 2-1.3 3.5-1.3 2.5 0 4.5 1.5 5.5 3"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GRAFIK FITUR UTAMA (INFOGRAFIS CARD) -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-white p-5 rounded-2xl border border-pink-100 text-center space-y-2 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-pink-100 text-pink-600 rounded-2xl flex items-center justify-center mx-auto text-xl">
+                        <i class="fa-solid fa-gem"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 text-sm">Material Premium</h3>
+                    <p class="text-xs text-gray-500">Acetate kokoh & tahan lama</p>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-pink-100 text-center space-y-2 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-pink-100 text-pink-600 rounded-2xl flex items-center justify-center mx-auto text-xl">
+                        <i class="fa-solid fa-glasses"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 text-sm">Lensa Anti Radiasi</h3>
+                    <p class="text-xs text-gray-500">Nyaman di depan layar HP/Laptop</p>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-pink-100 text-center space-y-2 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-pink-100 text-pink-600 rounded-2xl flex items-center justify-center mx-auto text-xl">
+                        <i class="fa-solid fa-face-smile"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 text-sm">Ergonomis</h3>
+                    <p class="text-xs text-gray-500">Pas di telinga & gagang hidung</p>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-pink-100 text-center space-y-2 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-pink-100 text-pink-600 rounded-2xl flex items-center justify-center mx-auto text-xl">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 text-sm">Pengiriman Cepat</h3>
+                    <p class="text-xs text-gray-500">Aman ke seluruh Indonesia</p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- 2. PRODUK -->
+        <section id="produk" class="page-section space-y-6">
+            <div class="text-center space-y-2">
+                <h2 class="text-2xl lg:text-3xl font-extrabold text-gray-800">Katalog Produk Modern</h2>
+                <p class="text-sm text-pink-600 font-medium">Klik pada produk untuk melihat rincian ukuran & detail spesifikasi!</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Sora -->
+                <div class="bg-white rounded-2xl border border-pink-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-52 bg-pink-50 overflow-hidden cursor-pointer" onclick="showDetail('Sora', 'Rp 125.000', 'sora.jpg', 'Kacamata Sora memiliki desain ringan bertema soft pink dengan bahan acetat yang nyaman dipakai.', 'S (135 mm)')">
+                            <img src="sora.jpg" alt="Sora" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="handleImgError(this, 'Sora Eyewear')">
+                            <div class="absolute inset-0 bg-pink-900/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-bold gap-2">
+                                <i class="fa-solid fa-magnifying-glass"></i> Lihat Rincian
+                            </div>
+                        </div>
+                        <div class="p-4 space-y-2">
+                            <div class="flex justify-between items-start">
+                                <h3 class="font-bold text-lg text-gray-800">Sora</h3>
+                                <span class="px-2 py-0.5 bg-pink-100 text-pink-700 text-xs rounded-full font-bold">Size S</span>
+                            </div>
+                            <p class="text-pink-600 font-extrabold text-lg">Rp 125.000</p>
+                            <p class="text-xs text-gray-500">Sumber foto: <a href="https://heykama.com/product/ima-frame-essential-active-progress-black?color=olive" target="_blank" class="underline text-pink-600 hover:text-pink-800">Heykama Product</a></p>
+                        </div>
+                    </div>
+                    <div class="p-4 pt-0">
+                        <button class="w-full py-2.5 bg-pink-50 hover:bg-pink-600 text-pink-600 hover:text-white rounded-xl font-bold text-sm transition-colors" onclick="showDetail('Sora', 'Rp 125.000', 'sora.jpg', 'Kacamata Sora memiliki desain ringan bertema soft pink dengan bahan acetat yang nyaman dipakai.', 'S (135 mm)')">
+                            Lihat Rincian
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Chowa -->
+                <div class="bg-white rounded-2xl border border-pink-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-52 bg-pink-50 overflow-hidden cursor-pointer" onclick="showDetail('Chowa', 'Rp 249.000', 'chowa.jpg', 'Desain Chowa memberikan kesan elegan dan profesional, fleksibel untuk berbagai acara.', 'M (140 mm)')">
+                            <img src="chowa.jpg" alt="Chowa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="handleImgError(this, 'Chowa Eyewear')">
+                            <div class="absolute inset-0 bg-pink-900/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-bold gap-2">
+                                <i class="fa-solid fa-magnifying-glass"></i> Lihat Rincian
+                            </div>
+                        </div>
+                        <div class="p-4 space-y-2">
+                            <div class="flex justify-between items-start">
+                                <h3 class="font-bold text-lg text-gray-800">Chowa</h3>
+                                <span class="px-2 py-0.5 bg-pink-100 text-pink-700 text-xs rounded-full font-bold">Size M</span>
+                            </div>
+                            <p class="text-pink-600 font-extrabold text-lg">Rp 249.000</p>
+                            <p class="text-xs text-gray-500">Sumber foto: <a href="https://heykama.com/product/ima-frame-essential-active-progress-black?color=olive" target="_blank" class="underline text-pink-600 hover:text-pink-800">Heykama Product</a></p>
+                        </div>
+                    </div>
+                    <div class="p-4 pt-0">
+                        <button class="w-full py-2.5 bg-pink-50 hover:bg-pink-600 text-pink-600 hover:text-white rounded-xl font-bold text-sm transition-colors" onclick="showDetail('Chowa', 'Rp 249.000', 'chowa.jpg', 'Desain Chowa memberikan kesan elegan dan profesional, fleksibel untuk berbagai acara.', 'M (140 mm)')">
+                            Lihat Rincian
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Jiyo -->
+                <div class="bg-white rounded-2xl border border-pink-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-52 bg-pink-50 overflow-hidden cursor-pointer" onclick="showDetail('Jiyo', 'Rp 299.000', 'jiyo.jpg', 'Gaya oversized khas Jiyo yang siap membuat penampilanmu makin kekinian.', 'L (145 mm)')">
+                            <img src="jiyo.jpg" alt="Jiyo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="handleImgError(this, 'Jiyo Eyewear')">
+                            <div class="absolute inset-0 bg-pink-900/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-bold gap-2">
+                                <i class="fa-solid fa-magnifying-glass"></i> Lihat Rincian
+                            </div>
+                        </div>
+                        <div class="p-4 space-y-2">
+                            <div class="flex justify-between items-start">
+                                <h3 class="font-bold text-lg text-gray-800">Jiyo</h3>
+                                <span class="px-2 py-0.5 bg-pink-100 text-pink-700 text-xs rounded-full font-bold">Size L</span>
+                            </div>
+                            <p class="text-pink-600 font-extrabold text-lg">Rp 299.000</p>
+                            <p class="text-xs text-gray-500">Sumber foto: <a href="https://heykama.com/product/ima-frame-essential-active-progress-black?color=olive" target="_blank" class="underline text-pink-600 hover:text-pink-800">Heykama Product</a></p>
+                        </div>
+                    </div>
+                    <div class="p-4 pt-0">
+                        <button class="w-full py-2.5 bg-pink-50 hover:bg-pink-600 text-pink-600 hover:text-white rounded-xl font-bold text-sm transition-colors" onclick="showDetail('Jiyo', 'Rp 299.000', 'jiyo.jpg', 'Gaya oversized khas Jiyo yang siap membuat penampilanmu makin kekinian.', 'L (145 mm)')">
+                            Lihat Rincian
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Najio -->
+                <div class="bg-white rounded-2xl border border-pink-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-52 bg-pink-50 overflow-hidden cursor-pointer" onclick="showDetail('Najio', 'Rp 249.000', 'najio.jpg', 'Najio mengusung gaya minimalis modern cocok untuk bentuk wajah tirus.', 'S (135 mm)')">
+                            <img src="najio.jpg" alt="Najio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="handleImgError(this, 'Najio Eyewear')">
+                            <div class="absolute inset-0 bg-pink-900/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-bold gap-2">
+                                <i class="fa-solid fa-magnifying-glass"></i> Lihat Rincian
+                            </div>
+                        </div>
+                        <div class="p-4 space-y-2">
+                            <div class="flex justify-between items-start">
+                                <h3 class="font-bold text-lg text-gray-800">Najio</h3>
+                                <span class="px-2 py-0.5 bg-pink-100 text-pink-700 text-xs rounded-full font-bold">Size S</span>
+                            </div>
+                            <p class="text-pink-600 font-extrabold text-lg">Rp 249.000</p>
+                            <p class="text-xs text-gray-500">Sumber foto: <a href="https://heykama.com/product/ima-frame-essential-active-progress-black?color=olive" target="_blank" class="underline text-pink-600 hover:text-pink-800">Heykama Product</a></p>
+                        </div>
+                    </div>
+                    <div class="p-4 pt-0">
+                        <button class="w-full py-2.5 bg-pink-50 hover:bg-pink-600 text-pink-600 hover:text-white rounded-xl font-bold text-sm transition-colors" onclick="showDetail('Najio', 'Rp 249.000', 'najio.jpg', 'Najio mengusung gaya minimalis modern cocok untuk bentuk wajah tirus.', 'S (135 mm)')">
+                            Lihat Rincian
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Ima -->
+                <div class="bg-white rounded-2xl border border-pink-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-52 bg-pink-50 overflow-hidden cursor-pointer" onclick="showDetail('Ima', 'Rp 249.000', 'ima.jpg', 'Kombinasi frame klasik dengan sentuhan nuansa warna pink cerah.', 'M (140 mm)')">
+                            <img src="ima.jpg" alt="Ima" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="handleImgError(this, 'Ima Eyewear')">
+                            <div class="absolute inset-0 bg-pink-900/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-bold gap-2">
+                                <i class="fa-solid fa-magnifying-glass"></i> Lihat Rincian
+                            </div>
+                        </div>
+                        <div class="p-4 space-y-2">
+                            <div class="flex justify-between items-start">
+                                <h3 class="font-bold text-lg text-gray-800">Ima</h3>
+                                <span class="px-2 py-0.5 bg-pink-100 text-pink-700 text-xs rounded-full font-bold">Size M</span>
+                            </div>
+                            <p class="text-pink-600 font-extrabold text-lg">Rp 249.000</p>
+                            <p class="text-xs text-gray-500">Sumber foto: <a href="https://heykama.com/product/ima-frame-essential-active-progress-black?color=olive" target="_blank" class="underline text-pink-600 hover:text-pink-800">Heykama Product</a></p>
+                        </div>
+                    </div>
+                    <div class="p-4 pt-0">
+                        <button class="w-full py-2.5 bg-pink-50 hover:bg-pink-600 text-pink-600 hover:text-white rounded-xl font-bold text-sm transition-colors" onclick="showDetail('Ima', 'Rp 249.000', 'ima.jpg', 'Kombinasi frame klasik dengan sentuhan nuansa warna pink cerah.', 'M (140 mm)')">
+                            Lihat Rincian
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 3. PANDUAN UKURAN -->
+        <section id="panduan" class="page-section space-y-6">
+            <div class="text-center space-y-2 max-w-xl mx-auto">
+                <h2 class="text-2xl lg:text-3xl font-extrabold text-gray-800">Panduan Ukuran Frame</h2>
+                <p class="text-sm text-gray-600">Gunakan petunjuk ukuran di bawah ini untuk memilih frame yang paling pas dan presisi dengan lebar wajah Anda.</p>
+            </div>
+
+            <div class="bg-white rounded-3xl p-6 lg:p-8 shadow-sm border border-pink-100 overflow-x-auto">
+                <table class="w-full text-left border-collapse min-w-[500px]">
+                    <thead>
+                        <tr class="bg-pink-50 text-pink-700 border-b border-pink-100">
+                            <th class="p-4 rounded-l-2xl font-bold text-sm">Ukuran</th>
+                            <th class="p-4 font-bold text-sm">Lebar Frame (mm)</th>
+                            <th class="p-4 font-bold text-sm">Lebar Lensa (mm)</th>
+                            <th class="p-4 rounded-r-2xl font-bold text-sm">Rekomendasi Bentuk Wajah</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-pink-50 text-sm text-gray-600">
+                        <tr class="hover:bg-pink-50/50 transition-colors">
+                            <td class="p-4 font-extrabold text-pink-600">Small (S)</td>
+                            <td class="p-4">130 - 135 mm</td>
+                            <td class="p-4">48 - 50 mm</td>
+                            <td class="p-4">Wajah Mungil / Tirus</td>
+                        </tr>
+                        <tr class="hover:bg-pink-50/50 transition-colors">
+                            <td class="p-4 font-extrabold text-pink-600">Medium (M)</td>
+                            <td class="p-4">136 - 140 mm</td>
+                            <td class="p-4">51 - 53 mm</td>
+                            <td class="p-4">Wajah Sedang (Standar)</td>
+                        </tr>
+                        <tr class="hover:bg-pink-50/50 transition-colors">
+                            <td class="p-4 font-extrabold text-pink-600">Large (L)</td>
+                            <td class="p-4">141 - 145 mm</td>
+                            <td class="p-4">54 - 56 mm</td>
+                            <td class="p-4">Wajah Lebar / Oversized Style</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 4. TENTANG KAMI -->
+        <section id="tentang" class="page-section space-y-6">
+            <div class="max-w-3xl mx-auto bg-white rounded-3xl p-8 lg:p-12 shadow-sm border border-pink-100 text-center space-y-6">
+                <div class="w-16 h-16 bg-pink-100 text-pink-600 rounded-3xl flex items-center justify-center mx-auto text-2xl">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <h2 class="text-2xl lg:text-3xl font-extrabold text-gray-800">Tentang Soemiwi Eyewear</h2>
+                <div class="space-y-4 text-gray-600 leading-relaxed text-sm lg:text-base">
+                    <p>
+                        <strong>Soemiwi Eyewear</strong> lahir untuk menghadirkan koleksi kacamata pilihan dengan perpaduan nilai estetika, kenyamanan maksimal, serta kualitas material kelas atas.
+                    </p>
+                    <p>
+                        Kami percaya bahwa kacamata bukan sekadar alat bantu penglihatan, melainkan elemen kunci dalam mengekspresikan gaya hidup dan rasa percaya diri Anda setiap hari.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. KONTAK -->
+        <section id="kontak" class="page-section space-y-6">
+            <div class="text-center space-y-2">
+                <h2 class="text-2xl lg:text-3xl font-extrabold text-gray-800">Hubungi Kami</h2>
+                <p class="text-sm text-gray-600">Siap melayani pertanyaan dan konsultasi frame kacamata impianmu.</p>
+            </div>
+
+            <div class="max-w-2xl mx-auto bg-white rounded-3xl p-6 lg:p-8 shadow-sm border border-pink-100 space-y-4">
+                <a href="mailto:info@soemiwieyewear.com" class="flex items-center gap-4 p-4 rounded-2xl bg-pink-50/60 hover:bg-pink-100/60 transition-colors text-gray-700">
+                    <div class="w-10 h-10 bg-pink-100 text-pink-600 rounded-xl flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500 font-semibold">Email Resmi</div>
+                        <div class="font-bold text-sm">info@soemiwieyewear.com</div>
+                    </div>
+                </a>
+
+                <a href="https://wa.me/6281122800600" target="_blank" class="flex items-center gap-4 p-4 rounded-2xl bg-pink-50/60 hover:bg-pink-100/60 transition-colors text-gray-700">
+                    <div class="w-10 h-10 bg-pink-100 text-pink-600 rounded-xl flex items-center justify-center font-bold">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500 font-semibold">WhatsApp Customer Service</div>
+                        <div class="font-bold text-sm">+6281122800600</div>
+                    </div>
+                </a>
+
+                <div class="flex items-center gap-4 p-4 rounded-2xl bg-pink-50/60 text-gray-700">
+                    <div class="w-10 h-10 bg-pink-100 text-pink-600 rounded-xl flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500 font-semibold">Lokasi Offline Store</div>
+                        <div class="font-bold text-sm">Jl. Ambon No.67, Bandung, Jawa Barat</div>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4 p-4 rounded-2xl bg-pink-50/60 text-gray-700">
+                    <div class="w-10 h-10 bg-pink-100 text-pink-600 rounded-xl flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500 font-semibold">Jam Operasional Toko</div>
+                        <div class="font-bold text-sm">Senin - Sabtu (09.00 - 17.00 WIB)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODAL DETAIL PRODUK -->
+    <div id="productModal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 relative shadow-2xl space-y-4 animate-fadeIn">
+            <button class="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 hover:bg-pink-100 text-gray-500 hover:text-pink-600 flex items-center justify-center font-bold transition-colors" onclick="closeDetail()">
+                &times;
+            </button>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
+                <div class="h-48 rounded-2xl bg-pink-50 overflow-hidden">
+                    <img id="mImg" src="" alt="Detail Produk" class="w-full h-full object-cover">
+                </div>
+                <div class="space-y-2">
+                    <h3 id="mName" class="text-xl font-extrabold text-gray-800"></h3>
+                    <p id="mPrice" class="text-pink-600 font-extrabold text-lg"></p>
+                    <p id="mDesc" class="text-xs text-gray-500 leading-relaxed"></p>
+                    <div class="text-xs space-y-1 text-gray-700 pt-1">
+                        <p><strong>Ukuran:</strong> <span id="mSize"></span></p>
+                        <p><strong>Material:</strong> Acetate Premium</p>
+                    </div>
+                    <button class="w-full mt-2 py-2.5 bg-pink-600 hover:bg-pink-700 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-md shadow-pink-200" onclick="orderWhatsApp()">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> Pesan via WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-pink-100 py-6 text-center text-xs text-gray-500">
+        <p>&copy; 2026 Soemiwi Eyewear. All rights reserved.</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        let currentSelectedProduct = '';
+
+        // Switch Page Tab Functionality
+        function switchPage(pageId, btnElement) {
+            const pages = document.querySelectorAll('.page-section');
+            pages.forEach(page => page.classList.remove('active-page'));
+
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active', 'bg-pink-100', 'text-pink-600');
+                btn.classList.add('text-gray-600');
+            });
+
+            document.getElementById(pageId).classList.add('active-page');
+            if(btnElement) {
+                btnElement.classList.add('active', 'bg-pink-100', 'text-pink-600');
+                btnElement.classList.remove('text-gray-600');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show Product Modal Detail
+        function showDetail(name, price, imgSrc, desc, size) {
+            currentSelectedProduct = name;
+            document.getElementById('mName').innerText = name;
+            document.getElementById('mPrice').innerText = price;
+            document.getElementById('mImg').src = imgSrc;
+            document.getElementById('mDesc').innerText = desc;
+            document.getElementById('mSize').innerText = size;
+            
+            const modal = document.getElementById('productModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        // Close Product Modal
+        function closeDetail() {
+            const modal = document.getElementById('productModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Redirect order directly to WhatsApp with prefilled message
+        function orderWhatsApp() {
+            const message = encodeURIComponent(`Halo Soemiwi Eyewear! Saya mau memesan kacamata seri *${currentSelectedProduct}*. Boleh info persediaannya?`);
+            window.open(`https://wa.me/6281234567890?text=${message}`, '_blank');
+        }
+
+        // Fallback for missing local images on preview environment
+        function handleImgError(img, name) {
+            img.onerror = null;
+            img.src = `https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=500&auto=format&fit=crop&q=80`;
+        }
+
+        // Close Modal when clicking outside the box
+        window.onclick = function(event) {
+            const modal = document.getElementById('productModal');
+            if (event.target === modal) {
+                closeDetail();
+            }
+        }
+    </script>
+</body>
+</html>
